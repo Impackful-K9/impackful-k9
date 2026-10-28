@@ -1,0 +1,9 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/gallery", "destination": "/programs", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
