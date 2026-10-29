@@ -4,7 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impackful K9 — Calm is a skill.</title>
+  <title>Dog Training in Metro Vancouver | Impackful K9</title>
+  <meta name="description" content="Calm, confident dogs through real-world training across Metro Vancouver. Private programs for reactivity, recall, leash manners and puppies.">
+  <link rel="canonical" href="https://www.impackfulk9.com/">
+
+  <!-- Open Graph / social (per-page values are kept in sync by js/seo-router.js) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Impackful K9">
+  <meta property="og:title" content="Dog Training in Metro Vancouver | Impackful K9">
+  <meta property="og:description" content="Calm, confident dogs through real-world training across Metro Vancouver. Private programs for reactivity, recall, leash manners and puppies.">
+  <meta property="og:url" content="https://www.impackfulk9.com/">
+  <meta property="og:image" content="https://www.impackfulk9.com/images/hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google Analytics (GA4). send_page_view:false — js/seo-router.js fires one
+       page_view per client-side page change, initial load included. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0L3D8C6TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V0L3D8C6TW', { send_page_view: false });
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/css/styles.css">
@@ -97,6 +119,11 @@
       script.onload = () => {
         // Only call after main.js has fully loaded
         if (typeof initStatCounter === 'function') initStatCounter();
+        // SEO router wraps navigateTo / enterClassicMode, so it must load
+        // after main.js has defined them.
+        const seoRouter = document.createElement('script');
+        seoRouter.src = '/js/seo-router.js';
+        document.body.appendChild(seoRouter);
       };
       document.body.appendChild(script);
 
