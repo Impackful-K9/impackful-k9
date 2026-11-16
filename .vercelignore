@@ -1,0 +1,4 @@
+# Dev-only / large — kept in git but not deployed
+node_modules
+images/_originals
+tools

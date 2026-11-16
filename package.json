@@ -1,0 +1,13 @@
+{
+  "name": "impackful-k9",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Impackful K9 static site. Build/optimize scripts are dev-only (no deploy-time build).",
+  "scripts": {
+    "build": "node tools/build-static.js",
+    "optimize:images": "node tools/optimize-images.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

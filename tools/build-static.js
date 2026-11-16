@@ -27,7 +27,7 @@ const ROOT = path.resolve(__dirname, '..');
 const SECTIONS = path.join(ROOT, 'sections');
 const CANON = 'https://www.impackfulk9.com'; // canonical host (no trailing slash)
 const GA_ID = 'G-V0L3D8C6TW';
-const OG_IMAGE = CANON + '/images/hero.png';
+const OG_IMAGE = CANON + '/images/hero.webp';
 
 // ── Route table ──────────────────────────────────────────────────────────
 // path: served URL (NO trailing slash; '/' for home — see TRAILING SLASH note)
@@ -80,6 +80,74 @@ const REDIRECTS = [
 const pathById = Object.fromEntries(ROUTES.map(r => [r.pageId, r.path]));
 
 function read(file) { return fs.readFileSync(path.join(SECTIONS, file), 'utf8'); }
+
+// ── Image optimization: WebP refs, <img> attrs, lazy CSS backgrounds ───────
+// image-manifest.json (written by tools/optimize-images.js) maps each original
+// reference to its WebP path + output dimensions.
+const MANIFEST = JSON.parse(fs.readFileSync(path.join(__dirname, 'image-manifest.json'), 'utf8'));
+const REF2WEBP = {};                                   // /images/x.png -> /images/x.webp
+const DIMS = { '/images/logo.png': { w: 149, h: 152 }, '/images/green-logo.png': { w: 149, h: 152 } };
+for (const [orig, info] of Object.entries(MANIFEST)) { REF2WEBP[orig] = info.webp; DIMS[info.webp] = { w: info.w, h: info.h }; }
+
+// Meaningful alt text, keyed by original ref (mapped onto the WebP src below).
+const ALT = {
+  '/images/logo.png': 'Impackful K9 logo', '/images/green-logo.png': 'Impackful K9 logo',
+  '/images/hero.png': 'A dog and its owner together on a forest trail',
+  '/images/mobile-hero.PNG': 'A dog and its owner together on a forest trail',
+  '/images/image9.png': 'A relaxed dog spending time outdoors with its owner',
+  '/images/image22.png': 'A calm, focused dog during real-world training',
+  '/images/library-hero.png': 'A dog owner following an online training lesson at home',
+  '/images/beach/community-1.png': 'A dog and its owner enjoying the beach together',
+  '/images/landscapes/contact-1.png': 'A trainer working with a dog outdoors',
+  '/images/jenn/contact-1.png': "Jenn, Impackful K9's trainer, with a dog",
+  '/images/jenn/program-1.png': 'Jenn working with a dog at an Impackful K9 event',
+};
+const ALT_BY_SRC = {};
+for (const [orig, alt] of Object.entries(ALT)) ALT_BY_SRC[REF2WEBP[orig] || orig] = alt;
+// Always-eager (above the fold): nav logos + the home hero.
+const EAGER = new Set(['/images/logo.png', '/images/green-logo.png', REF2WEBP['/images/hero.png'], REF2WEBP['/images/mobile-hero.PNG']]);
+const LOGOS = new Set(['/images/logo.png', '/images/green-logo.png']);
+
+function webpRewrite(html) {
+  for (const [orig, webp] of Object.entries(REF2WEBP)) if (html.indexOf(orig) !== -1) html = html.split(orig).join(webp);
+  return html;
+}
+function addAttr(tag, name, value) {
+  if (new RegExp('\\s' + name + '=').test(tag)) return tag;
+  return tag.replace(/\s*\/?>$/, m => ' ' + name + '="' + value + '"' + m);
+}
+function processImgs(html) {
+  let firstContentImgSeen = false;
+  return html.replace(/<img\b[^>]*>/g, (tag) => {
+    const sm = tag.match(/\ssrc="([^"]+)"/); if (!sm) return tag;
+    const src = sm[1];
+    if (ALT_BY_SRC[src]) tag = /\salt="/.test(tag) ? tag.replace(/\salt="[^"]*"/, ' alt="' + ALT_BY_SRC[src] + '"') : addAttr(tag, 'alt', ALT_BY_SRC[src]);
+    else if (!/\salt="/.test(tag)) tag = addAttr(tag, 'alt', '');
+    const d = DIMS[src]; if (d) { tag = addAttr(tag, 'width', d.w); tag = addAttr(tag, 'height', d.h); }
+    // eager: logos, the home hero, and the first content image on the page
+    // (its above-the-fold hero). Everything else lazy-loads.
+    let eager = EAGER.has(src);
+    if (!eager && !LOGOS.has(src) && !firstContentImgSeen) { eager = true; firstContentImgSeen = true; }
+    if (!eager) tag = addAttr(tag, 'loading', 'lazy');
+    return tag;
+  });
+}
+// For heavy routes: defer CSS background-images to an IntersectionObserver
+// (app.js) by moving the url into data-bg. These load as tiles near the viewport.
+function bgLazy(html) {
+  return html.replace(/style="([^"]*background-image[^"]*)"/g, (m, style) => {
+    const um = style.match(/background-image:\s*url\(['"]?([^'")]+)['"]?\)\s*;?/);
+    if (!um) return m;
+    let rest = style.replace(/background-image:\s*url\(['"]?[^'")]+['"]?\)\s*;?/, '').replace(/;\s*;/g, ';').trim().replace(/^;|;$/g, '').trim();
+    return 'data-bg="' + um[1] + '"' + (rest ? ' style="' + rest + '"' : '');
+  });
+}
+function optimizeImages(html, route) {
+  html = webpRewrite(html);
+  html = processImgs(html);
+  if (route.pageId === 'community' || route.pageId === 'journey') html = bgLazy(html);
+  return html;
+}
 
 // Rewrite in-app navigation (href="#" + onclick="navigateTo(...)", and nav
 // links keyed by data-page) into REAL hrefs, so links work with JS off and are
@@ -183,7 +251,7 @@ function buildPage(route) {
 
   const bodyFlags = `data-route="${route.pageId}"${route.home ? ' data-home="true"' : ''}${route.journey ? ' data-journey="true"' : ''}`;
 
-  return `${head(route)}
+  const page = `${head(route)}
 <body ${bodyFlags}>
   ${introMarkup}<div id="main-site" class="visible">
     ${nav}
@@ -195,6 +263,7 @@ function buildPage(route) {
 </body>
 </html>
 `;
+  return optimizeImages(page, route);
 }
 
 // ── Write route files ──────────────────────────────────────────────────────

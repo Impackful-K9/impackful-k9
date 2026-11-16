@@ -79,6 +79,17 @@
     els.forEach(function (el) { if (!el.classList.contains('revealed')) obs.observe(el); });
   }
 
+  // ── Lazy CSS backgrounds (heavy routes) ───────────────────────────────────
+  // Tiles carry their image in data-bg instead of an inline background-image;
+  // the picture is fetched only as the tile nears the viewport.
+  function setBg(el) { var u = el.getAttribute('data-bg'); if (u) { el.style.backgroundImage = "url('" + u + "')"; el.removeAttribute('data-bg'); } }
+  function initBgLazy(root) {
+    var els = $all('[data-bg]', root); if (!els.length) return;
+    if (!('IntersectionObserver' in window)) { els.forEach(setBg); return; }
+    var obs = new IntersectionObserver(function (ents) { ents.forEach(function (e) { if (e.isIntersecting) { setBg(e.target); obs.unobserve(e.target); } }); }, { rootMargin: '300px' });
+    els.forEach(function (el) { obs.observe(el); });
+  }
+
   // ── Stat counter ──────────────────────────────────────────────────────────
   function initStatCounter(root) {
     var el = $('.about-stat-num[data-count]', root); if (!el || el._done) return; el._done = true;
@@ -154,6 +165,7 @@
   function initPage(routeId) {
     var root = $('#snap-container') || document;
     initReveal(root);
+    initBgLazy(root);
     initStatCounter(root);
     initConsent(root);
     updateNavActive(routeId);

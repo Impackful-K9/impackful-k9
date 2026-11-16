@@ -1,0 +1,337 @@
+{
+  "/images/landscapes/crossroads-bg.png": {
+    "webp": "/images/landscapes/crossroads-bg.webp",
+    "w": 1376,
+    "h": 768
+  },
+  "/images/comm1.png": {
+    "webp": "/images/comm1.webp",
+    "w": 1000,
+    "h": 1003
+  },
+  "/images/comm3.png": {
+    "webp": "/images/comm3.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/comm2.png": {
+    "webp": "/images/comm2.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/comm4.png": {
+    "webp": "/images/comm4.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/landscapes/community-1.png": {
+    "webp": "/images/landscapes/community-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/story-1.png": {
+    "webp": "/images/landscapes/story-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/story-2.png": {
+    "webp": "/images/landscapes/story-2.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/story-3.png": {
+    "webp": "/images/landscapes/story-3.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/landscapes/story-4.png": {
+    "webp": "/images/landscapes/story-4.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/story-5.png": {
+    "webp": "/images/landscapes/story-5.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/story-6.png": {
+    "webp": "/images/landscapes/story-6.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/beach/community-1.png": {
+    "webp": "/images/beach/community-1.webp",
+    "w": 1000,
+    "h": 874
+  },
+  "/images/landscapes/contact-1.png": {
+    "webp": "/images/landscapes/contact-1.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/jenn/contact-1.png": {
+    "webp": "/images/jenn/contact-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/hero.png": {
+    "webp": "/images/hero.webp",
+    "w": 1434,
+    "h": 808
+  },
+  "/images/mobile-hero.PNG": {
+    "webp": "/images/mobile-hero.webp",
+    "w": 606,
+    "h": 808
+  },
+  "/images/image9.png": {
+    "webp": "/images/image9.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/trails-hike.png": {
+    "webp": "/images/trails-hike.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/coffee-shop.png": {
+    "webp": "/images/coffee-shop.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/beaches.png": {
+    "webp": "/images/beaches.webp",
+    "w": 1000,
+    "h": 668
+  },
+  "/images/pack-walks.png": {
+    "webp": "/images/pack-walks.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/image22.png": {
+    "webp": "/images/image22.webp",
+    "w": 1000,
+    "h": 563
+  },
+  "/images/interactive/journey-intro.png": {
+    "webp": "/images/interactive/journey-intro.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-1.png": {
+    "webp": "/images/interactive/interactive-1.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-2.png": {
+    "webp": "/images/interactive/interactive-2.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-3.png": {
+    "webp": "/images/interactive/interactive-3.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-4.png": {
+    "webp": "/images/interactive/interactive-4.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-5.png": {
+    "webp": "/images/interactive/interactive-5.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-6.png": {
+    "webp": "/images/interactive/interactive-6.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-7.png": {
+    "webp": "/images/interactive/interactive-7.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-8.png": {
+    "webp": "/images/interactive/interactive-8.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-9.png": {
+    "webp": "/images/interactive/interactive-9.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-10.png": {
+    "webp": "/images/interactive/interactive-10.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-11.png": {
+    "webp": "/images/interactive/interactive-11.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/interactive-12.png": {
+    "webp": "/images/interactive/interactive-12.webp",
+    "w": 1000,
+    "h": 1000
+  },
+  "/images/interactive/interactive-13.png": {
+    "webp": "/images/interactive/interactive-13.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/interactive/about-1.png": {
+    "webp": "/images/interactive/about-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/interactive/interactive-15.png": {
+    "webp": "/images/interactive/interactive-15.webp",
+    "w": 1000,
+    "h": 563
+  },
+  "/images/interactive/interactive-16.png": {
+    "webp": "/images/interactive/interactive-16.webp",
+    "w": 848,
+    "h": 1264
+  },
+  "/images/interactive/interactive-17.png": {
+    "webp": "/images/interactive/interactive-17.webp",
+    "w": 848,
+    "h": 1264
+  },
+  "/images/library-hero.png": {
+    "webp": "/images/library-hero.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/landscapes/library-2.png": {
+    "webp": "/images/landscapes/library-2.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/landscapes/library-5.png": {
+    "webp": "/images/landscapes/library-5.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/library-3.png": {
+    "webp": "/images/landscapes/library-3.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/library-4.png": {
+    "webp": "/images/landscapes/library-4.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/landscapes/library-7.png": {
+    "webp": "/images/landscapes/library-7.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/library-why.png": {
+    "webp": "/images/library-why.webp",
+    "w": 1000,
+    "h": 1000
+  },
+  "/images/landscapes/library-1.png": {
+    "webp": "/images/landscapes/library-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/library-8.png": {
+    "webp": "/images/landscapes/library-8.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/about1.png": {
+    "webp": "/images/about1.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/about2.png": {
+    "webp": "/images/about2.webp",
+    "w": 1000,
+    "h": 1028
+  },
+  "/images/about3.png": {
+    "webp": "/images/about3.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/about4.png": {
+    "webp": "/images/about4.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/jenn/about-1.png": {
+    "webp": "/images/jenn/about-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/about-1.png": {
+    "webp": "/images/landscapes/about-1.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/jenn-training.png": {
+    "webp": "/images/jenn-training.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/cta-bg.png": {
+    "webp": "/images/cta-bg.webp",
+    "w": 1376,
+    "h": 768
+  },
+  "/images/jenn/program-1.png": {
+    "webp": "/images/jenn/program-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/program-1.png": {
+    "webp": "/images/landscapes/program-1.webp",
+    "w": 1000,
+    "h": 558
+  },
+  "/images/landscapes/program-2.png": {
+    "webp": "/images/landscapes/program-2.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/landscapes/program-3.png": {
+    "webp": "/images/landscapes/program-3.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/focused-foundations.png": {
+    "webp": "/images/focused-foundations.webp",
+    "w": 1000,
+    "h": 1778
+  },
+  "/images/mindful-meetup.png": {
+    "webp": "/images/mindful-meetup.webp",
+    "w": 842,
+    "h": 848
+  },
+  "/images/mindful-reset.png": {
+    "webp": "/images/mindful-reset.webp",
+    "w": 1000,
+    "h": 667
+  },
+  "/images/landscapes/library-visual.png": {
+    "webp": "/images/landscapes/library-visual.webp",
+    "w": 1000,
+    "h": 671
+  },
+  "/images/landscapes/program-4.png": {
+    "webp": "/images/landscapes/program-4.webp",
+    "w": 1000,
+    "h": 671
+  }
+}
