@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Training Path | Impackful K9</title>
+  <meta name="description" content="Answer a few questions about your dog and get a personalized Impackful K9 training recommendation.">
+  <link rel="canonical" href="https://www.impackfulk9.com/journey">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Impackful K9">
+  <meta property="og:title" content="Find Your Training Path | Impackful K9">
+  <meta property="og:description" content="Answer a few questions about your dog and get a personalized Impackful K9 training recommendation.">
+  <meta property="og:url" content="https://www.impackfulk9.com/journey">
+  <meta property="og:image" content="https://www.impackfulk9.com/images/hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google Analytics (GA4). send_page_view:false — app.js fires one
+       page_view per route change (initial load included). -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0L3D8C6TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V0L3D8C6TW', { send_page_view: false });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/journey.css">
+</head>
+<body data-route="journey" data-journey="true">
+  <div id="main-site" class="visible">
+    <!-- ─── NAVIGATION ─── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/images/green-logo.png" alt="Impackful K9 Logo" class="logo-light">
+      <img src="/images/logo.png"      alt="Impackful K9 Logo" class="logo-dark">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" class="active" data-page="hero">Home</a></li>
+      <li><a href="/programs" data-page="programs">Programs</a></li>
+      <li><a href="/online-programs" data-page="library">The Library</a></li>
+      <li><a href="/about" data-page="philosophy">About</a></li>
+      <li><a href="/community" data-page="community">Community</a></li>
+      <li><a href="/contact" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+        </svg>
+        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" style="display:none">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+      </button>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg class="nav-ic-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg class="nav-ic-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M6 18 18 6" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+    <div class="snap-container" id="snap-container">
+      <!-- ── JOURNEY MODE ── -->
+<div id="page-journey" class="journey-active">
+
+  <button id="j-close">Exit Journey</button>
+
+  <!-- Progress chrome — visible only in the paged deck (pages 2–18) -->
+  <div id="j-progress"><div id="j-progress-fill"></div></div>
+  <div id="j-step"><span id="j-step-now">02</span> / 18</div>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE 1 — HERO  (complete — do not change)
+       tall wrapper gives scroll room · sticky hero pins
+       ══════════════════════════════════════════════════ -->
+  <div id="j-hero-wrap">
+
+    <!-- sticky hero stays in view while user scrolls -->
+    <section id="j-hero">
+      <div id="j-bg" style="background-image: url('/images/interactive/journey-intro.png')"></div>
+      <div id="j-vignette"></div>
+      <div id="j-gradient"></div>
+      <div id="j-content">
+        <span id="j-eyebrow">Impackful K9 · Interactive Journey</span>
+        <h1 id="j-title"></h1>
+        <div id="j-hint">
+          <span id="j-hint-text">Scroll</span>
+          <div id="j-hint-line"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGES 2–18 — THE DECK
+       Each .j-page is position:fixed, full viewport.
+       journey.js pops them in with a stacked card animation
+       (slides up from behind · back.out(1.4)) on wheel/swipe.
+       ══════════════════════════════════════════════════ -->
+  <div id="j-deck">
+
+    <!-- ── PAGE 2 — THE LIFE YOU'RE TRAINING FOR ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-1.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">The Life You're Training For</span>
+        <h2 class="j-page-title j-reveal">Picture Sunday&nbsp;morning.</h2>
+        <div class="j-body">
+          <p class="j-line j-reveal">Coffee in hand, your dog settled calmly beside you on a busy patio.</p>
+          <p class="j-line j-reveal">Or a trail through the trees — your dog moving with you, present and connected.</p>
+          <p class="j-line j-reveal">A beach where they run free and still come back when you call.</p>
+          <p class="j-line j-reveal j-line-emph">Six months from now, that could be your normal.</p>
+        </div>
+        <div class="j-scroll-hint j-reveal"><span>Scroll</span><div class="j-hint-line"></div></div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 3 — QUESTION 1 ── -->
+    <section class="j-page" data-type="question" data-q="1">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-2.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-center">
+        <span class="j-eyebrow-pill j-reveal">Question 1 of 5</span>
+        <h2 class="j-page-title j-q-title j-reveal">When you're at home with your dog, which feels most like your day-to-day?</h2>
+        <div class="j-options">
+          <button class="j-pill j-reveal" data-value="attention">My dog constantly wants my attention.</button>
+          <button class="j-pill j-reveal" data-value="independent">My dog does their own thing and rarely checks in.</button>
+          <button class="j-pill j-reveal" data-value="velcro">My dog follows me everywhere I go.</button>
+          <button class="j-pill j-reveal" data-value="calm">My dog is calm and settles easily around the house.</button>
+        </div>
+        <button class="j-continue" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- ── PAGE 4 — THIS ISN'T JUST ABOUT TRAINING ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-3.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">The Bigger Picture</span>
+        <h2 class="j-page-title j-reveal">This isn't just about training.</h2>
+        <div class="j-body">
+          <p class="j-line j-reveal">Most people come to us not really asking for dog training.</p>
+          <p class="j-line j-reveal">They're asking if there's hope.</p>
+          <p class="j-line j-reveal">Hope that their dog can stop reacting.</p>
+          <p class="j-line j-reveal">Hope that walks can become enjoyable again.</p>
+          <p class="j-line j-reveal">Hope that life with their dog can become what they imagined it would be.</p>
+        </div>
+        <p class="j-body-block j-reveal">That's what we're building here. Not a dog that performs on command in a parking lot — but a companion you genuinely love sharing your life with. One who makes your world bigger, not smaller.</p>
+        <div class="j-scroll-hint j-reveal"><span>Scroll</span><div class="j-hint-line"></div></div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 5 — WHY TRAINING DOESN'T STICK ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-4.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">Why Training Doesn't Stick</span>
+        <h2 class="j-page-title j-reveal">It's not your dog. It's the&nbsp;system.</h2>
+        <div class="j-points">
+          <div class="j-point j-reveal">
+            <span class="j-point-num">01</span>
+            <p class="j-point-text">Most training focuses on commands, not communication.</p>
+          </div>
+          <div class="j-point j-reveal">
+            <span class="j-point-num">02</span>
+            <p class="j-point-text">Skills learned in a facility don't transfer to real life.</p>
+          </div>
+          <div class="j-point j-reveal">
+            <span class="j-point-num">03</span>
+            <p class="j-point-text">Owners are left to figure out implementation on their own.</p>
+          </div>
+        </div>
+        <p class="j-tagline j-reveal">There is a better way.</p>
+      </div>
+    </section>
+
+    <!-- ── PAGE 6 — QUESTION 2 ── -->
+    <section class="j-page" data-type="question" data-q="2">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-5.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-center">
+        <span class="j-eyebrow-pill j-reveal">Question 2 of 5</span>
+        <h2 class="j-page-title j-q-title j-reveal">What usually gets in the way of enjoying your walks together?</h2>
+        <div class="j-options">
+          <button class="j-pill j-reveal" data-value="pulling">My dog pulls me from one thing to the next.</button>
+          <button class="j-pill j-reveal" data-value="reactive">My dog reacts to people or other dogs.</button>
+          <button class="j-pill j-reveal" data-value="distracted">My dog is too distracted to pay attention to me.</button>
+          <button class="j-pill j-reveal" data-value="avoidant">I've started avoiding certain places because walking has become stressful.</button>
+        </div>
+        <button class="j-continue" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- ── PAGE 7 — THE MINDFUL METHOD ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-6.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">The Mindful Method™</span>
+        <h2 class="j-page-title j-page-title-sm j-reveal">A different way of looking at the relationship between people and dogs.</h2>
+        <div class="j-pillars">
+          <div class="j-pillar j-reveal">
+            <h3 class="j-pillar-title">Calm is a skill.</h3>
+            <p class="j-pillar-desc">Clear communication creates calm. When both the person and the dog understand what's being asked, calmness follows naturally.</p>
+          </div>
+          <div class="j-pillar j-reveal">
+            <h3 class="j-pillar-title">Connection is the foundation.</h3>
+            <p class="j-pillar-desc">Connection before commands. A dog that wants to work with you will always outperform a dog that has to.</p>
+          </div>
+          <div class="j-pillar j-reveal">
+            <h3 class="j-pillar-title">Real life is the classroom.</h3>
+            <p class="j-pillar-desc">Trails, cafés, parks, and beaches aren't distractions from training — they're the point. Real environments produce real results.</p>
+          </div>
+        </div>
+        <p class="j-tagline j-reveal">Calm is a skill.</p>
+      </div>
+    </section>
+
+    <!-- ── PAGE 8 — QUESTION 3 ── -->
+    <section class="j-page" data-type="question" data-q="3">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-7.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-center">
+        <span class="j-eyebrow-pill j-reveal">Question 3 of 5</span>
+        <h2 class="j-page-title j-q-title j-reveal">Imagine stopping for a coffee with your dog. What would happen?</h2>
+        <div class="j-options">
+          <button class="j-pill j-reveal" data-value="never">I wouldn't even consider bringing my dog.</button>
+          <button class="j-pill j-reveal" data-value="leave">We'd have to leave because my dog wouldn't settle.</button>
+          <button class="j-pill j-reveal" data-value="conditional">My dog could relax if the environment wasn't too busy.</button>
+          <button class="j-pill j-reveal" data-value="settled">My dog would happily lie beside me while I enjoyed my coffee.</button>
+        </div>
+        <button class="j-continue" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- ── PAGE 9 — FOCUSED FOUNDATIONS ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-8.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">01 — The Entry Point</span>
+        <h2 class="j-page-title j-reveal">Focused Foundations.</h2>
+        <p class="j-tag j-reveal">In-person or online</p>
+        <p class="j-body-block j-reveal">The communication system that forms the backbone of everything we do. Owners learn how to create engagement, improve focus, and develop a dog that wants to work with them rather than against them.</p>
+        <div class="j-mini">
+          <span class="j-mini-label j-reveal">Who it's for</span>
+          <div class="j-list">
+            <div class="j-list-item j-reveal">Your dog pulls you towards every smell, person, or dog they see</div>
+            <div class="j-list-item j-reveal">You find yourself tightening your leash and crossing the street</div>
+            <div class="j-list-item j-reveal">You are avoiding busy trails or bracing yourself whenever you see another dog coming toward you</div>
+            <div class="j-list-item j-reveal">Your walks have become trying to prevent something from happening instead of actually enjoying your walk with your dog</div>
+          </div>
+        </div>
+        <p class="j-tagline j-reveal">For many owners, this is the first time they feel truly empowered.</p>
+      </div>
+    </section>
+
+    <!-- ── PAGE 10 — MINDFUL MEETUPS ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-9.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">02 — The Lived Experience</span>
+        <h2 class="j-page-title j-reveal">Mindful Meetups.</h2>
+        <p class="j-tag j-reveal">Ongoing membership · In-person · Lower Mainland BC</p>
+        <p class="j-body-block j-reveal">Where training becomes a lifestyle. Guided group experiences in real-world environments — trails, cafés, parks, beaches. Not a class. Not a package. A community.</p>
+        <div class="j-chips">
+          <span class="j-chip j-reveal">Adventure hikes</span>
+          <span class="j-chip j-reveal">Pack walks</span>
+          <span class="j-chip j-reveal">Café socials</span>
+          <span class="j-chip j-reveal">Urban outings</span>
+          <span class="j-chip j-reveal">Recall sessions</span>
+          <span class="j-chip j-reveal">Reactivity sessions</span>
+        </div>
+        <p class="j-tagline j-reveal">Members build friendships, explore new places, and gain confidence together. The community becomes one of the most valuable parts.</p>
+      </div>
+    </section>
+
+    <!-- ── PAGE 11 — QUESTION 4 ── -->
+    <section class="j-page" data-type="question" data-q="4">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-10.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-center">
+        <span class="j-eyebrow-pill j-reveal">Question 4 of 5</span>
+        <h2 class="j-page-title j-q-title j-reveal">Imagine you're on a beautiful hiking trail. If you unclipped your dog's leash…</h2>
+        <div class="j-options">
+          <button class="j-pill j-reveal" data-value="bolt">My dog would run after the first interesting smell.</button>
+          <button class="j-pill j-reveal" data-value="partial">My dog would come back sometimes, unless something more exciting came along.</button>
+          <button class="j-pill j-reveal" data-value="nervous">I'd feel nervous and probably keep the leash on.</button>
+          <button class="j-pill j-reveal" data-value="reliable">I'd trust my dog completely to come when called.</button>
+        </div>
+        <button class="j-continue" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- ── PAGE 12 — THE MINDFUL RESET + REACTIVITY REMEDY ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-11.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-wide">
+        <span class="j-eyebrow-pill j-reveal">Going Deeper</span>
+        <h2 class="j-page-title j-page-title-sm j-reveal">For dogs who need a little more.</h2>
+        <div class="j-programs">
+          <div class="j-prog-card j-reveal">
+            <span class="j-prog-kicker">03 — Intensive</span>
+            <h3 class="j-prog-title">The Mindful Reset</h3>
+            <p class="j-prog-body">One dog at a time. Your dog lives in Jenn's home as a member of the family and receives individualized attention throughout their stay. The goal is not perfection. The goal is momentum.</p>
+            <span class="j-prog-tag">Private · Immersive</span>
+          </div>
+          <div class="j-prog-card j-reveal">
+            <span class="j-prog-kicker">Inside Mindful Meetups</span>
+            <h3 class="j-prog-title">Reactivity Remedy</h3>
+            <p class="j-prog-body">Specialized sessions for dogs that struggle around triggers — other dogs, people, bicycles, wildlife, or busy environments. The goal is to help dogs learn how to process their environment more calmly.</p>
+            <span class="j-prog-tag">Within Meetups</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 13 — THE LEARNING LIBRARY ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-12.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">04 — Online</span>
+        <h2 class="j-page-title j-reveal">The Learning Library.</h2>
+        <p class="j-tag j-reveal">Self-paced · Available worldwide</p>
+        <p class="j-body-block j-reveal">The same Impackful K9 philosophy and training systems — available wherever you are in the world. For owners outside BC, or anyone who prefers to learn at their own pace.</p>
+        <div class="j-courses">
+          <div class="j-course j-course-on j-reveal"><span class="j-course-mark">✓</span> Focused Foundations <span class="j-course-state">Available Now</span></div>
+          <div class="j-course j-course-on j-reveal"><span class="j-course-mark">✓</span> Calm Is A Skill <span class="j-course-state">Available Now</span></div>
+          <div class="j-course j-reveal"><span class="j-course-mark">○</span> The Mindful Puppy</div>
+          <div class="j-course j-reveal"><span class="j-course-mark">○</span> Reliable Recall</div>
+          <div class="j-course j-reveal"><span class="j-course-mark">○</span> Reactivity Remedy</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 14 — QUESTION 5 ── -->
+    <section class="j-page" data-type="question" data-q="5">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-13.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-center">
+        <span class="j-eyebrow-pill j-reveal">Question 5 of 5</span>
+        <h2 class="j-page-title j-q-title j-reveal">If your dog had these skills, what would you be most excited to do together?</h2>
+        <div class="j-options">
+          <button class="j-pill j-reveal" data-value="hiking">Explore hiking trails.</button>
+          <button class="j-pill j-reveal" data-value="cafes">Visit cafés and patios.</button>
+          <button class="j-pill j-reveal" data-value="urban">Walk through busy parks and city streets.</button>
+          <button class="j-pill j-reveal" data-value="offleash">Let my dog safely enjoy more off-leash freedom.</button>
+          <button class="j-pill j-reveal" data-value="everyday">Simply enjoy everyday life together without the stress.</button>
+        </div>
+        <button class="j-continue" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- ── PAGE 15 — JENN'S STORY ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/about-1.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">Jenn's Story</span>
+        <h2 class="j-page-title j-reveal">The dogs taught me the most.</h2>
+        <div class="j-body">
+          <p class="j-line j-reveal">Over 20 years of working with thousands of dogs and their owners — and what surprised me most wasn't what I learned about dogs. It was what I learned about people.</p>
+          <p class="j-line j-reveal">Most people contact me not really asking for dog training. They're asking if there's hope.</p>
+          <p class="j-line j-reveal">For more than a decade, I've helped dog owners discover that the answer is yes.</p>
+        </div>
+        <div class="j-stats">
+          <div class="j-stat j-reveal"><span class="j-stat-num">20+</span><span class="j-stat-label">Years Experience</span></div>
+          <div class="j-stat j-reveal"><span class="j-stat-num">2006</span><span class="j-stat-label">Started Training</span></div>
+          <div class="j-stat j-reveal"><span class="j-stat-num">2,000+</span><span class="j-stat-label">Dogs Helped</span></div>
+        </div>
+        <p class="j-quote j-reveal">A struggling dog can make the world feel smaller. A confident dog can make the world feel bigger.</p>
+      </div>
+    </section>
+
+    <!-- ── PAGE 16 — THE COMMUNITY ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-15.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">The Community</span>
+        <h2 class="j-page-title j-reveal">Where dog training meets real life.</h2>
+        <p class="j-body-block j-reveal">Mindful Meetups is not a weekly training class. It is not a training package. It is an ongoing lifestyle membership where owners and dogs practice skills in real-world environments while building confidence, community, and lasting relationships.</p>
+        <div class="j-stories">
+          <div class="j-story j-reveal">"I Was Embarrassed to Walk My Dog"</div>
+          <div class="j-story j-reveal">"I Had Stopped Taking My Dog Places"</div>
+          <div class="j-story j-reveal">"I Felt Completely Overwhelmed"</div>
+          <div class="j-story j-reveal">"I Wanted a Better Relationship With My Dog"</div>
+          <div class="j-story j-reveal">"I Was Looking for Support"</div>
+          <div class="j-story j-reveal">"I Thought My Dog Needed More Socialization"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 17 — WHERE WE TRAIN ── -->
+    <section class="j-page" data-type="info">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-16.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner">
+        <span class="j-eyebrow-pill j-reveal">Where We Train</span>
+        <h2 class="j-page-title j-reveal">Serving the Lower Mainland.</h2>
+        <div class="j-chips">
+          <span class="j-chip j-reveal">Vancouver</span>
+          <span class="j-chip j-reveal">North Vancouver</span>
+          <span class="j-chip j-reveal">West Vancouver</span>
+          <span class="j-chip j-reveal">Burnaby</span>
+          <span class="j-chip j-reveal">Coquitlam</span>
+          <span class="j-chip j-reveal">Port Coquitlam</span>
+          <span class="j-chip j-reveal">Port Moody</span>
+          <span class="j-chip j-reveal">Surrey</span>
+          <span class="j-chip j-reveal">Langley</span>
+          <span class="j-chip j-reveal">Pitt Meadows</span>
+          <span class="j-chip j-reveal">Maple Ridge</span>
+        </div>
+        <div class="j-divider j-reveal"></div>
+        <p class="j-body-block j-online-note j-reveal">Outside BC? The Learning Library is available worldwide.</p>
+      </div>
+    </section>
+
+    <!-- ── PAGE 18 — YOUR PLAN (EMAIL CAPTURE) ── -->
+    <section class="j-page" data-type="capture">
+      <div class="j-page-bg" style="background-image:url('/images/interactive/interactive-17.png')"></div>
+      <div class="j-page-scrim"></div>
+      <div class="j-page-inner j-inner-center">
+        <span class="j-eyebrow-pill j-reveal">Your Personalized Plan</span>
+        <h2 class="j-page-title j-page-title-sm j-reveal">Based on everything you've shared, your plan is ready.</h2>
+        <p class="j-capture-sub j-reveal">Enter your details and we'll send your free personalized training plan directly to you.</p>
+
+        <form class="j-form j-reveal" id="j-form" novalidate>
+          <input class="j-input" id="j-name" name="name" type="text" autocomplete="name" placeholder="Your name">
+          <input class="j-input" id="j-email" name="email" type="email" autocomplete="email" placeholder="Your email">
+          <button class="j-submit" type="submit">Send My Plan</button>
+          <p class="j-form-note">Jenn personally reviews every submission.</p>
+        </form>
+
+        <div class="j-form-success" id="j-form-success" hidden>
+          <span class="j-success-check">✓</span>
+          <h3 class="j-success-title">Your plan is on its way.</h3>
+          <p class="j-success-text">Check your inbox — we've sent your personalized training plan. Jenn reviews every submission personally.</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /#j-deck -->
+
+<style>
+    .site-footer {
+    background: var(--page-bg);
+    border-top: 1px solid var(--border-line);
+    transition: background 300ms ease, border-color 300ms ease;
+    }
+
+    .footer-wrap {
+    padding: 80px 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    }
+
+    .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    }
+
+    .footer-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    display: block;
+    }
+
+    [data-theme="light"] .footer-logo {
+    filter: brightness(0.78) saturate(1.2);
+    }
+
+    [data-theme="dark"] .footer-logo {
+    filter: brightness(1.35) saturate(0.9);
+    }
+
+    .footer-tagline {
+    font-family: 'The Seasons', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    transition: color 300ms ease;
+    }
+
+    .footer-location {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color 300ms ease;
+    }
+
+    .footer-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    }
+
+    .footer-nav-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    transition: color 300ms ease;
+    }
+
+    .footer-nav-link {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 200ms ease, transform 200ms ease;
+    display: inline-block;
+    }
+
+    .footer-nav-link:hover {
+    color: var(--text-primary);
+    transform: translateX(3px);
+    }
+
+    .footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    }
+
+    .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-line);
+    transition: border-color 300ms ease;
+    }
+
+    .footer-copy {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    transition: color 300ms ease;
+    }
+
+    @media (max-width: 900px) {
+    .footer-wrap {
+        padding: 60px 24px 32px;
+        gap: 40px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    }
+</style>
+
+<!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/images/logo.png" alt="Impackful K9" class="logo-dark footer-logo">
+          <img src="/images/green-logo.png" alt="Impackful K9" class="logo-light footer-logo">
+          <p class="footer-tagline">Calm is a skill.</p>
+          <p class="footer-location">Lower Mainland, BC · Vancouver & surrounding areas</p>
+        </div>
+        <div class="footer-nav-group">
+          <span class="footer-nav-label">Programs</span>
+          <a class="footer-nav-link" href="/programs#focused-foundations">Focused Foundations</a>
+          <a class="footer-nav-link" href="/programs#mindful-meetups">Mindful Meetups</a>
+          <a class="footer-nav-link" href="/programs#mindful-reset">The Mindful Reset</a>
+          <a class="footer-nav-link" href="/online-programs">The Learning Library</a>
+        </div>
+        <div class="footer-nav-group">
+          <span class="footer-nav-label">Explore</span>
+          <a class="footer-nav-link" href="/about">About</a>
+          <a class="footer-nav-link" href="/community">Community</a>
+          <a class="footer-nav-link" href="/contact">Contact</a>
+          <a class="footer-nav-link" href="/contact">Shop</a>
+        </div>
+        <div class="footer-nav-group">
+          <span class="footer-nav-label">Follow Along</span>
+          <a class="footer-nav-link footer-social-link" href="https://instagram.com/impackfulk9" target="_blank" rel="noopener">
+            Instagram
+          </a>
+          <a class="footer-nav-link footer-social-link" href="https://facebook.com/impackfulk9" target="_blank" rel="noopener">
+            Facebook
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Impackful K9. All rights reserved.</span>
+        <span class="footer-copy">Helping people build a life they love sharing with their dog.</span>
+      </div>
+    </div>
+  </footer>
+</div><!-- /#page-journey -->
+
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script src="/js/journey.js"></script>
+</body>
+</html>

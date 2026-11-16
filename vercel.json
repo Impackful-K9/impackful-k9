@@ -1,9 +1,11 @@
 {
   "trailingSlash": false,
+  "cleanUrls": true,
   "redirects": [
-    { "source": "/gallery", "destination": "/programs", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/gallery",
+      "destination": "/programs",
+      "permanent": true
+    }
   ]
 }

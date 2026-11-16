@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
   <meta name="description" content="Calm, confident dogs through real-world training across Metro Vancouver. Private programs for reactivity, recall, leash manners and puppies.">
   <link rel="canonical" href="https://www.impackfulk9.com/">
 
-  <!-- Open Graph / social (per-page values are kept in sync by js/seo-router.js) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Impackful K9">
   <meta property="og:title" content="Dog Training in Metro Vancouver | Impackful K9">
@@ -17,8 +15,8 @@
   <meta property="og:image" content="https://www.impackfulk9.com/images/hero.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Google Analytics (GA4). send_page_view:false — js/seo-router.js fires one
-       page_view per client-side page change, initial load included. -->
+  <!-- Google Analytics (GA4). send_page_view:false — app.js fires one
+       page_view per route change (initial load included). -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0L3D8C6TW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -32,108 +30,604 @@
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/journey.css">
 </head>
-
-<body>
-
-  <!-- ─── LIGHT BURST ─── -->
-  <div id="slot-light-burst"></div>
-
-  <!-- ─── INTRO OVERLAY ─── -->
-  <div id="slot-intro-overlay"></div>
-
-  <!-- ─── CROSSROADS ─── -->
-  <div id="slot-crossroads"></div>
-
-  <!-- ─── COMING SOON (journey) ─── -->
-  <div id="slot-coming-soon"></div>
-
-  <!-- ─── MAIN SITE ─── -->
-  <div id="main-site">
-
-    <!-- NAV -->
-    <div id="slot-nav"></div>
-
-    <!-- Page container -->
-    <div class="snap-container" id="snap-container">
-      <div id="slot-page-hero"></div>
-      <div id="slot-page-programs"></div>
-      <div id="slot-page-library"></div>
-      <div id="slot-page-philosophy"></div>
-      <div id="slot-page-community"></div>
-      <div id="slot-page-contact"></div>
+<body data-route="hero" data-home="true">
+  <div class="intro-layer" hidden><!-- ─── LIGHT BURST ─── -->
+<div id="light-burst"></div>
+</div>
+  <div class="intro-layer" hidden><!-- ─── INTRO OVERLAY ─── -->
+<div id="intro-overlay">
+  <video id="intro-video" src="/images/walking-vid.mp4" autoplay muted playsinline preload="auto"></video>
+  <div class="video-overlay"></div>
+  <div class="video-vignette"></div>
+  <div id="intro-content">
+    <div class="logo-ring">
+      <img src="/images/logo.png" alt="Impackful K9 Logo">
     </div>
+    <div class="intro-tagline">Seek Connection,<br>Chase Adventure</div>
+    <div class="intro-sub">Impackful K9 · Dog Training · Lower Mainland, BC</div>
+  </div>
+</div>
+</div>
+  <div class="intro-layer" hidden><style>
+  .crossroads-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: opacity 300ms ease;
+  }
 
-  </div><!-- /main-site -->
+  .crossroads-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(13, 26, 14, 0.62);
+  }
 
-  <!-- ─── JOURNEY MODE (fixed overlay, outside snap) ─── -->
-  <div id="slot-page-journey"></div>
+  [data-theme="light"] .crossroads-overlay {
+    background: rgba(240, 237, 232, 0.72);
+  }
 
-  <script>
-    const sections = [
-      { slot: 'slot-light-burst',    file: 'sections/light-burst.html' },
-      { slot: 'slot-intro-overlay',  file: 'sections/intro-overlay.html' },
-      { slot: 'slot-crossroads',     file: 'sections/crossroads.html' },
-      { slot: 'slot-coming-soon',    file: 'sections/coming-soon.html' },
-      { slot: 'slot-nav',            file: 'sections/nav.html' },
-      { slot: 'slot-page-hero',      file: 'sections/page-hero.html' },
-      { slot: 'slot-page-programs',  file: 'sections/page-programs.html' },
-      { slot: 'slot-page-library',   file: 'sections/page-library.html' },
-      { slot: 'slot-page-philosophy',file: 'sections/page-philosophy.html' },
-      { slot: 'slot-page-community', file: 'sections/page-community.html' },
-      { slot: 'slot-page-contact',   file: 'sections/page-contact.html' },
-      { slot: 'slot-page-journey',   file: 'sections/page-journey.html' },
-    ];
+  /* Push all crossroads content above the overlay */
+  #crossroads > *:not(.crossroads-bg):not(.crossroads-overlay) {
+    position: relative;
+    z-index: 2;
+  }
+  /* ── BONUS TEASER ── */
+.crossroads-bonus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(184, 212, 206, 0.12);
+  border: 1px solid rgba(184, 212, 206, 0.3);
+  padding: 10px 20px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  width: fit-content;
+  align-self: center;
+}
 
-    Promise.all(
-      sections.map(({ slot, file }) =>
-        fetch(file)
-          .then(r => {
-            if (!r.ok) throw new Error(`Failed to load ${file}: ${r.status}`);
-            return r.text();
-          })
-          .then(html => {
-            document.getElementById(slot).innerHTML = html;
-          })
-          .catch(err => {
-            console.error(err);
-            document.getElementById(slot).innerHTML =
-              `<!-- could not load ${file} -->`;
-          })
-      )
-    ).then(() => {
+.crossroads-bonus-icon {
+  font-size: 11px;
+  color: var(--sea-glass);
+  flex-shrink: 0;
+}
 
-      // Inject footer into every page
-      fetch('sections/footer.html')
-        .then(r => r.text())
-        .then(html => {
-          document.querySelectorAll('.page').forEach(page => {
-            const footer = document.createElement('div');
-            footer.innerHTML = html;
-            page.appendChild(footer);
-          });
-        });
+.crossroads-bonus-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240, 237, 232, 0.85);
+  line-height: 1.5;
+}
 
-      // Boot main.js first
-      const script = document.createElement('script');
-      script.src = '/js/main.js';
-      script.onload = () => {
-        // Only call after main.js has fully loaded
-        if (typeof initStatCounter === 'function') initStatCounter();
-        // SEO router wraps navigateTo / enterClassicMode, so it must load
-        // after main.js has defined them.
-        const seoRouter = document.createElement('script');
-        seoRouter.src = '/js/seo-router.js';
-        document.body.appendChild(seoRouter);
-      };
-      document.body.appendChild(script);
+[data-theme="light"] .crossroads-bonus-text {
+  color: var(--text-muted);
+}
 
-      // Load journey.js independently
-      const journeyScript = document.createElement('script');
-      journeyScript.src = '/js/journey.js';
-      document.body.appendChild(journeyScript);
+.crossroads-bonus-text strong {
+  color: var(--sea-glass);
+  font-weight: 600;
+}
 
-    });
-  </script>
+/* ── FEATURED PATH CARD ── */
+.path-card-featured {
+  position: relative;
+  border-color: rgba(184, 212, 206, 0.5) !important;
+}
 
+.path-card-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-sea);
+  background: var(--sea-glass);
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+</style>
+
+<!-- ─── CROSSROADS ─── -->
+<div id="crossroads">
+  <div class="crossroads-bg" style="background-image: url('/images/landscapes/crossroads-bg.png')"></div>
+  <div class="crossroads-overlay"></div>
+
+  <img src="/images/logo.png" alt="Impackful K9 Logo" class="logo-dark crossroads-logo">
+  <img src="/images/green-logo.png" alt="Impackful K9 Logo" class="logo-light crossroads-logo">
+  
+  <p class="crossroads-sub">Choose how you'd like to explore.</p>
+
+  <!-- ── BONUS TEASER ── -->
+  <div class="crossroads-bonus">
+    <span class="crossroads-bonus-icon">★</span>
+    <p class="crossroads-bonus-text">Complete the interactive journey to reveal your <strong>personalized training plan.</strong></p>
+  </div>
+
+  <div class="crossroads-paths">
+    <div class="path-card" onclick="enterClassicMode()">
+      <div class="path-number">Path 01</div>
+      <div class="path-title">I Know Where To Start</div>
+      <div class="path-sub">Classic Mode</div>
+      <div class="path-desc">Explore the full website at your own pace — programs, philosophy, community, and more.</div>
+      <div class="path-arrow">Enter <span class="path-arrow-line"></span></div>
+    </div>
+    <div class="path-card path-card-featured" onclick="enterJourneyMode()">
+      <div class="path-card-badge">Free Training Plan</div>
+      <div class="path-number">Path 02</div>
+      <div class="path-title">Help Me Find The Right Path</div>
+      <div class="path-sub">Take an interactive journey</div>
+      <div class="path-desc">Tell us about your dog by answering a few questions and unlock a special bonus at the end.</div>
+      <div class="path-arrow">Begin <span class="path-arrow-line"></span></div>
+    </div>
+  </div>
+</div></div>
+  <div class="intro-layer" hidden><!-- ─── COMING SOON (journey) ─── -->
+<div id="coming-soon">
+  <span class="coming-soon-label">Interactive Journey</span>
+  <h2 class="coming-soon-heading">Coming Soon.</h2>
+  <p class="coming-soon-sub">We're building a personalised path-finder that leads you to exactly the right program —
+    with a little something special at the end.</p>
+  <button class="coming-soon-back" onclick="hideCoomingSoon()">← Back to crossroads</button>
+</div>
+</div>
+  <div id="main-site" class="visible">
+    <!-- ─── NAVIGATION ─── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/images/green-logo.png" alt="Impackful K9 Logo" class="logo-light">
+      <img src="/images/logo.png"      alt="Impackful K9 Logo" class="logo-dark">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" class="active" data-page="hero">Home</a></li>
+      <li><a href="/programs" data-page="programs">Programs</a></li>
+      <li><a href="/online-programs" data-page="library">The Library</a></li>
+      <li><a href="/about" data-page="philosophy">About</a></li>
+      <li><a href="/community" data-page="community">Community</a></li>
+      <li><a href="/contact" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+        </svg>
+        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" style="display:none">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+      </button>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg class="nav-ic-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg class="nav-ic-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M6 18 18 6" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+    <div class="snap-container" id="snap-container">
+      <style>
+  /* ═══════════════════════════════════════════
+     RESPONSIVE — HERO (phone + tablet)
+     Desktop is untouched: every rule below lives
+     inside a max-width media query and is scoped
+     to #hero so it only affects this section.
+     ═══════════════════════════════════════════ */
+
+  /* ── TABLET (≤ 900px) ── */
+  @media (max-width: 900px) {
+    #hero {
+      padding: 0 40px 56px;
+    }
+
+    /* Let the text column shrink instead of pushing past the edge */
+    #hero .hero-content {
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    #hero .hero-headline {
+      font-size: clamp(30px, 5.2vw, 42px);
+      overflow-wrap: break-word;
+    }
+
+    #hero .hero-sub {
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+
+    #hero .hero-image,
+    #hero .mobile-hero {
+      max-width: 100%;
+    }
+  }
+
+  /* ── PHONE (≤ 600px) ── */
+  @media (max-width: 600px) {
+    #hero {
+      padding: 0 24px 48px;
+    }
+
+    #hero .hero-content {
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    #hero .hero-headline {
+      font-size: clamp(26px, 8vw, 34px);
+      letter-spacing: 0.04em;
+      overflow-wrap: break-word;
+    }
+
+    #hero .hero-sub {
+      font-size: 16px;
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+
+    #hero .eyebrow {
+      overflow-wrap: break-word;
+    }
+
+    #hero .hero-image,
+    #hero .mobile-hero {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<!-- ── PAGE: HERO ── -->
+<div class="page active" id="page-hero">
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-bg grad-cedar"></div>
+    <div class="hero-depth"></div>
+    <div class="hero-fog"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="eyebrow" id="h-eyebrow">Impackful K9 · Dog Training</div>
+      <h1 class="hero-headline" id="h-headline">Seek connection,<br>chase adventure.</h1>
+      <p class="hero-sub" id="h-sub">We're not just dog trainers, we're relationship coaches. We help you learn
+        how to better understand your dog's needs and behaviours, build trust and enhance communication.</p>
+    </div>
+    <img src="/images/hero.png" alt="Dog training" class="hero-image">
+    <img src="/images/mobile-hero.PNG" alt="Dog training" class="mobile-hero">
+  </section>
+
+  <!-- ── DESTINATION: IMAGINE LIFE WITH YOUR DOG ── -->
+  <section id="destination">
+    <div class="dest-wrap">
+      <div class="dest-top">
+        <div style = "width: 50%">
+          <span class="dest-kicker" data-scroll>01 — The Life You're Training For</span>
+          <h2 class="dest-headline" data-scroll>Imagine life<br>with your dog.</h2>
+          <p class="dest-body-text">
+          <b>This isn't just about training.</b><br>
+
+          Most people come to us because their dog is pulling, jumping, reactive, or just hard to manage. But what they're really after is something deeper — the confidence to say yes.<br><br>
+
+          Yes to the hike. Yes to the café. Yes to bringing their dog along without bracing for what might happen next.<br><br>
+
+          That's what we're building here. Not a dog that performs on command in a parking lot — but a companion you genuinely love sharing your life with. One who makes your world bigger, not smaller.<br><br>
+
+          Every one of these moments is possible. The only thing standing between you and that life is a system that actually works in the real world. <br><br>
+          Not just a dog that sits on command— but one who moves through the world with you. Calm at the coffee shop. Present on the trail. Easy at the beach.</p>
+        </div>
+        <img class = "dest-img" src="/images/image9.png" alt="Dog training" class="dest-image">
+      </div>
+      <div class="dest-grid" data-scroll>
+        <div class="dest-tile">
+          <div class="dest-tile-inner">
+            <div class="dest-tile-front">
+              <div class="dest-tile-img" style="background-image: url('/images/trails-hike.png')"></div>
+              <span class="dest-tile-label">Trails &amp; Hikes</span>
+            </div>
+            <div class="dest-tile-back">
+              <p class="dest-tile-back-text">Hit the trails with a dog who actually listens — off leash, present, and by your side.</p>
+            </div>
+          </div>
+        </div>
+        <div class="dest-tile">
+          <div class="dest-tile-inner">
+            <div class="dest-tile-front">
+              <div class="dest-tile-img" style="background-image: url('/images/coffee-shop.png')"></div>
+              <span class="dest-tile-label">Coffee Shops</span>
+            </div>
+            <div class="dest-tile-back">
+              <p class="dest-tile-back-text">Settled calmly at your feet on a busy patio. Sunday mornings, the way they were meant to be.</p>
+            </div>
+          </div>
+        </div>
+        <div class="dest-tile">
+          <div class="dest-tile-inner">
+            <div class="dest-tile-front">
+              <div class="dest-tile-img" style="background-image: url('/images/beaches.png')"></div>
+              <span class="dest-tile-label">Beaches</span>
+            </div>
+            <div class="dest-tile-back">
+              <p class="dest-tile-back-text">Run free, come back when called. The beach the way you always imagined it.</p>
+            </div>
+          </div>
+        </div>
+        <div class="dest-tile">
+          <div class="dest-tile-inner">
+            <div class="dest-tile-front">
+              <div class="dest-tile-img" style="background-image: url('/images/pack-walks.png')"></div>
+              <span class="dest-tile-label">Pack Walks</span>
+            </div>
+            <div class="dest-tile-back">
+              <p class="dest-tile-back-text">Move through the world together. Calm in a pack, confident around other dogs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY MOST TRAINING DOESN'T STICK ── -->
+  <section id="why-training-fails">
+    <div class="wtf-wrap">
+
+      <div class="wtf-left">
+        <span class="dest-kicker" data-scroll>02 — The Problem</span>
+        <h2 class="dest-headline" data-scroll>Why most<br>training<br>doesn't stick.</h2>
+      </div>
+
+      <ol class="wtf-list">
+        <li class="wtf-item" data-scroll style = "border-top: 1px solid var(--border-line);">
+          <span class="wtf-n">01</span>
+          <div>
+            <h3 class="wtf-title">The environment is everything.</h3>
+            <p class="wtf-desc">Training in a parking lot doesn't automatically transfer to real life. Your dog needs to learn in the places where you actually want to spend time together.</p>
+          </div>
+        </li>
+        <li class="wtf-item" data-scroll>
+          <span class="wtf-n">02</span>
+          <div>
+            <h3 class="wtf-title">Stubbornness isn't the issue.</h3>
+            <p class="wtf-desc">Most dogs aren't choosing to ignore you. They're overstimulated, distracted, and haven't yet learned how to regulate around distractions.</p>
+          </div>
+        </li>
+        <li class="wtf-item" data-scroll>
+          <span class="wtf-n">03</span>
+          <div>
+            <h3 class="wtf-title">You don't need more commands.</h3>
+            <p class="wtf-desc">You don't need a longer list of tricks. You need a system that teaches your dog how to stay calm, stay connected, and make better decisions even when the environment gets exciting.</p>
+          </div>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ── THE MINDFUL METHOD ── -->
+  <section id="mindful-method">
+    <div class="mm-wrap">
+
+      <div class="mm-top">
+        <div class = "mm-top-content">
+          <span class="dest-kicker" data-scroll>03 — Impackful K9 Philosophy</span>
+          <h2 class="dest-headline mm-headline" data-scroll>The Mindful Method.</h2>
+        </div>
+        <div class="mm-top-row">
+          <div class="mm-intro-block" data-scroll>
+            <p class="mm-intro-lead">Calm is a skill. And it can be taught.</p>
+            <p class="mm-intro">The Mindful Method™ is the framework behind everything we do. It gives owners a clear roadmap and dogs a clear path to success, making everyday life easier and outdoor adventures possible.</p>
+            <p class="mm-intro">Whether your dog is food motivated or not, a young puppy, a newly adopted rescue, or a dog that has struggled for years, the principles remain the same: teach the skills that create calm behaviour in the real world.</p>
+            <p class="mm-intro mm-intro-last">Because lasting results don't come from finding the perfect treat or the perfect leash. They come from teaching the right skills in the right environments.</p>
+          </div>
+        <img class = "dest-img" src="/images/image22.png" alt="Dog training" class="dest-image">
+        </div>
+      </div>
+
+      <div class="mm-pillars">
+        <div class="mm-pillar" data-scroll>
+          <span class="mm-pillar-n">01</span>
+          <h3 class="mm-pillar-title">Regulate First</h3>
+          <p class="mm-pillar-desc">A dog that can't calm down can't make good decisions. Most dogs are never taught how to settle, observe, and navigate distractions calmly. We start there.</p>
+        </div>
+        <div class="mm-pillar" data-scroll>
+          <span class="mm-pillar-n">02</span>
+          <h3 class="mm-pillar-title">Real-World Contexts</h3>
+          <p class="mm-pillar-desc">We teach in the places where life actually happens: trails, parks, patios, coffee shops, and the environments you want to enjoy with your dog.</p>
+        </div>
+        <div class="mm-pillar" data-scroll>
+          <span class="mm-pillar-n">03</span>
+          <h3 class="mm-pillar-title">Life Together</h3>
+          <p class="mm-pillar-desc">Training isn't the final destination. It's having a dog you can confidently bring along for the life you want to live together. The hikes, road trips, patios, coffee shops, and everyday adventures become possible because of the skills you train and build together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+    .site-footer {
+    background: var(--page-bg);
+    border-top: 1px solid var(--border-line);
+    transition: background 300ms ease, border-color 300ms ease;
+    }
+
+    .footer-wrap {
+    padding: 80px 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    }
+
+    .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    }
+
+    .footer-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    display: block;
+    }
+
+    [data-theme="light"] .footer-logo {
+    filter: brightness(0.78) saturate(1.2);
+    }
+
+    [data-theme="dark"] .footer-logo {
+    filter: brightness(1.35) saturate(0.9);
+    }
+
+    .footer-tagline {
+    font-family: 'The Seasons', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    transition: color 300ms ease;
+    }
+
+    .footer-location {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color 300ms ease;
+    }
+
+    .footer-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    }
+
+    .footer-nav-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    transition: color 300ms ease;
+    }
+
+    .footer-nav-link {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 200ms ease, transform 200ms ease;
+    display: inline-block;
+    }
+
+    .footer-nav-link:hover {
+    color: var(--text-primary);
+    transform: translateX(3px);
+    }
+
+    .footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    }
+
+    .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-line);
+    transition: border-color 300ms ease;
+    }
+
+    .footer-copy {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    transition: color 300ms ease;
+    }
+
+    @media (max-width: 900px) {
+    .footer-wrap {
+        padding: 60px 24px 32px;
+        gap: 40px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    }
+</style>
+
+<!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/images/logo.png" alt="Impackful K9" class="logo-dark footer-logo">
+          <img src="/images/green-logo.png" alt="Impackful K9" class="logo-light footer-logo">
+          <p class="footer-tagline">Calm is a skill.</p>
+          <p class="footer-location">Lower Mainland, BC · Vancouver & surrounding areas</p>
+        </div>
+        <div class="footer-nav-group">
+          <span class="footer-nav-label">Programs</span>
+          <a class="footer-nav-link" href="/programs#focused-foundations">Focused Foundations</a>
+          <a class="footer-nav-link" href="/programs#mindful-meetups">Mindful Meetups</a>
+          <a class="footer-nav-link" href="/programs#mindful-reset">The Mindful Reset</a>
+          <a class="footer-nav-link" href="/online-programs">The Learning Library</a>
+        </div>
+        <div class="footer-nav-group">
+          <span class="footer-nav-label">Explore</span>
+          <a class="footer-nav-link" href="/about">About</a>
+          <a class="footer-nav-link" href="/community">Community</a>
+          <a class="footer-nav-link" href="/contact">Contact</a>
+          <a class="footer-nav-link" href="/contact">Shop</a>
+        </div>
+        <div class="footer-nav-group">
+          <span class="footer-nav-label">Follow Along</span>
+          <a class="footer-nav-link footer-social-link" href="https://instagram.com/impackfulk9" target="_blank" rel="noopener">
+            Instagram
+          </a>
+          <a class="footer-nav-link footer-social-link" href="https://facebook.com/impackfulk9" target="_blank" rel="noopener">
+            Facebook
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Impackful K9. All rights reserved.</span>
+        <span class="footer-copy">Helping people build a life they love sharing with their dog.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
 </body>
 </html>
