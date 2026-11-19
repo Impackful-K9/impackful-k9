@@ -117,27 +117,15 @@
     // Set all chars invisible to start
     gsap.set(chars, { opacity: 0, filter: 'blur(6px)', y: 14 });
 
-    // ── Scroll-driven reveal ──
-    // The hero section is tall (300vh) so scrolling through it reveals the text
-    // scrub: true ties every pixel of scroll to char opacity
-    const tl = gsap.timeline({
-      scrollTrigger: {
-  trigger: '#j-hero-wrap',
-  start: 'top top',
-  end: 'bottom bottom',
-  scrub: 0.8,
-  pin: false
-}
-    });
-
-    chars.forEach((char, i) => {
-      tl.to(char, {
-        opacity: 1,
-        filter: 'blur(0px)',
-        y: 0,
-        duration: 0.4,
-        ease: 'power1.out'
-      }, i * 0.05);
+    // Immediate reveal (plays on open, no scrolling needed)
+    gsap.to(chars, {
+      opacity: 1,
+      filter: 'blur(0px)',
+      y: 0,
+      duration: 0.4,
+      ease: 'power1.out',
+      stagger: 0.05,
+      delay: 0.4
     });
   }
 
