@@ -298,7 +298,7 @@ const observer = new IntersectionObserver((entries) => {
 scrollEls.forEach(el => observer.observe(el));
 
 // ─── STAT COUNTER ───
-function initStatCounter() {
+/*function initStatCounter() {
   const el = document.querySelector('.about-stat-num[data-count]');
   if (!el) return;
 
@@ -328,7 +328,7 @@ function initStatCounter() {
 
   observer.observe(el);
 }
-initStatCounter();
+initStatCounter();*/
 
 function navigateToSection(page, sectionId) {
   navigateTo(page);
