@@ -35,7 +35,7 @@ toggleBtn.addEventListener('click', () => {
   applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 });
 
-applyTheme(localStorage.getItem('ik9-theme') || 'light');
+applyTheme(localStorage.getItem('ik9-theme') || 'dark');
 
 // ── Page navigation ──
 function navigateTo(pageId) {
