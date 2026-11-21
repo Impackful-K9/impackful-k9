@@ -253,6 +253,8 @@
   }
   window.enterClassicMode = function () { var cr = $('#crossroads'); if (!cr) return; cr.classList.add('exiting'); setTimeout(function () { cr.style.display = 'none'; var l = $all('.intro-layer'); l.forEach(function (x) { x.setAttribute('hidden', ''); }); triggerHeroAnimations(); }, 400); };
   window.enterJourneyMode = function () { location.href = '/journey'; };
+  // Skip the intro video and jump straight to the crossroads choice.
+  window.skipIntro = function () { triggerTransition(true, $('#intro-video')); };
   window.hideCoomingSoon = function () { var cs = $('#coming-soon'); if (cs) cs.classList.remove('visible'); var cr = $('#crossroads'); if (cr) { cr.style.display = 'flex'; cr.classList.remove('exiting'); cr.classList.remove('visible'); setTimeout(function () { cr.classList.add('visible'); }, 20); } };
   function initIntro() {
     var layers = $all('.intro-layer'); if (!layers.length) return;

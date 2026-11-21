@@ -1,3 +1,31 @@
+<style>
+  .intro-skip {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: transparent;
+    border: 1px solid rgba(240, 237, 232, 0.4);
+    color: rgba(240, 237, 232, 0.85);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: 100px;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+  .intro-skip:hover {
+    background: rgba(240, 237, 232, 0.12);
+    border-color: rgba(240, 237, 232, 0.7);
+    color: #F0EDE8;
+  }
+</style>
+
 <!-- ─── INTRO OVERLAY ─── -->
 <div id="intro-overlay">
   <video id="intro-video" src="/images/walking-vid.mp4" poster="/images/walking-vid-poster.webp" autoplay muted playsinline preload="auto"></video>
@@ -10,4 +38,5 @@
     <div class="intro-tagline">Seek Connection,<br>Chase Adventure</div>
     <div class="intro-sub">Impackful K9 · Dog Training · Lower Mainland, BC</div>
   </div>
+  <button class="intro-skip" onclick="skipIntro()" aria-label="Skip intro">Skip intro</button>
 </div>
